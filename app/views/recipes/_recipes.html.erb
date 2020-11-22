@@ -1,0 +1,37 @@
+<%= hidden_field_tag :direction, params[:direction] %>
+<%= hidden_field_tag :sort, params[:sort] %>
+
+<table class="table table-striped table-bordered table-condensed " >
+  <thead>
+  <tr>
+    <th style="width: 30%"><%= sortable "name", "Name"%></th>
+    <th style="width: 10%">Author</th>
+    <!--      <th style="width: 5%">Image</th>-->
+    <th style="width: 10%">Cook time</th>
+    <th style="width: 10%"><%= sortable "geography", "Geography"%></th>
+    <th style="width: 15%"><%= sortable "main_ingredient", "Main ingredient"%></th>
+    <th style="width: 10%"><%= sortable "dish_type", "Dish type"%></th>
+    <th style="width: 10%">Link</th>
+    <th colspan="3"></th>
+  </tr>
+  </thead>
+  <tbody>
+  <% @recipes.each do |recipe| %>
+    <tr>
+      <td><%= recipe.name %></td>
+      <td><%= link_to "#{recipe.author.name}",recipe.author %></td>
+      <!--        <td><%#= link_to "Image", recipe.image %></td>-->
+      <td><%= recipe.cook_time %></td>
+      <td><%= recipe.geography %></td>
+      <td><%= recipe.main_ingredient %></td>
+      <td><%= recipe.dish_type %></td>
+      <td><%= link_to "Link to site", recipe.link %></td>
+      <td><%= link_to 'Show', recipe %></td>
+      <!--        <td><%#= link_to 'Edit', edit_recipe_path(recipe) %></td>-->
+      <!--        <td><%#= link_to 'Destroy', recipe, method: :delete, data: { confirm: 'Are you sure?' } %></td>-->
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+<br>
+<%= will_paginate @recipes, renderer: WillPaginate::ActionView::BootstrapLinkRenderer  %>
