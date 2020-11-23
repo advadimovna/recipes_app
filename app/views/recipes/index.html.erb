@@ -1,6 +1,8 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Recipes <%= @recipes.length %></h1>
+<h1>Recipes</h1>
+<p>Total number of recipes <%= @recipes.total_entries %><br>
+   Recipes per page <%= @recipes.length %></p>
 
 <%= form_tag recipes_path, :method => 'get', :id => "recipes_search" do %>
   <p>
